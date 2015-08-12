@@ -1,6 +1,6 @@
 * Dependency injection example with system
 ** Definition
-This is an example for the [[https://github.com/danielsz/system-dependency-injection][system]] library. It shows how to leverage the dependency injection features of [[https://github.com/stuartsierra/component][componen]]t, the libary on top of which system itself is built. 
+This is an example for the [[https://github.com/danielsz/system][system]] library. It shows how to leverage the dependency injection features of [[https://github.com/stuartsierra/component][componen]]t, the libary on top of which system itself is built. 
 ** Mission statement
 Names are important. Which names? Those behind our favorite movies, that's who! So let’s save them via a web service.
 ** Installation
