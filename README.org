@@ -1,0 +1,96 @@
+* Dependency injection example with system
+** Definition
+Names are important. Which names? Those behind our favorite movies, that's who! So let us save them via a web service.
+
+** Installation
+
+In our development environment, we use a in-memory database and a web server listening on port 3025. In our production environment, we use a persistent database and a web server listening on port 8008.
+
+Start the system with development settings: 
+#+BEGIN_SRC sh
+$ boot dev-run
+#+END_SRC
+
+Or with production settings:
+#+BEGIN_SRC sh
+$ boot prod-run
+#+END_SRC
+
+** Usage
+
+To search for a movie’s director:
+#+BEGIN_SRC sh :results output replace :exports both
+curl -H "Content-Type: application/edn" -X POST -d '{:movie "Realm of the Senses"}' http://localhost:3025/movie 
+#+END_SRC
+
+#+RESULTS:
+: {:director ("Nagisa Ōshima")}
+
+To add a director to our database: 
+#+BEGIN_SRC sh :results silent
+curl -H "Content-Type: application/edn" -X PUT -d '{:director "Nagisa Ōshima"}' http://localhost:3025/director
+#+END_SRC
+
+To list directors in our database: 
+#+BEGIN_SRC sh :results output replace :exports both
+curl http://localhost:3025/directors
+#+END_SRC
+
+#+RESULTS:
+: ("Nagisa Ōshima")
+
+Let's look for another all-time favorite.  
+#+BEGIN_SRC sh :results output replace :exports both
+curl -H "Content-Type: application/edn" -X POST -d '{:movie "Professione: reporter"}' http://localhost:3025/movie 
+#+END_SRC
+
+#+RESULTS:
+: {:director ("Michelangelo Antonioni")}
+
+Now that we know the name of the director, we can persist it to our database.
+#+BEGIN_SRC sh :results silent
+curl -H "Content-Type: application/edn" -X PUT -d '{:director "Michelangelo Antonioni"}' http://localhost:3025/director
+#+END_SRC
+
+Let's verify it's there:
+#+BEGIN_SRC sh :results output replace :exports both
+curl http://localhost:3025/directors
+#+END_SRC
+
+#+RESULTS:
+: ("Nagisa Ōshima" "Michelangelo Antonioni")
+
+Let's repeat this one more time for a third movie/director: 
+#+BEGIN_SRC sh :results output replace :exports both
+curl -H "Content-Type: application/edn" -X POST -d '{:movie " À bout de souffle"}' http://localhost:3025/movie 
+#+END_SRC
+
+#+RESULTS:
+: {:director ("Jean-Luc Godard")}
+
+Saving to database:
+#+BEGIN_SRC sh :results silent
+curl -H "Content-Type: application/edn" -X PUT -d '{:director "Jean-Luc Godard"}' http://localhost:3025/director
+#+END_SRC
+
+We should now have three directors in our database:
+#+BEGIN_SRC sh :results output replace :exports both
+curl http://localhost:3025/directors
+#+END_SRC
+
+#+RESULTS:
+: ("Nagisa Ōshima" "Michelangelo Antonioni" "Jean-Luc Godard")
+
+Let's suppose we want to remove one. 
+#+BEGIN_SRC sh :results silent
+curl -H "Content-Type: application/edn" -X DELETE -d '{:director "Nagisa Ōshima"}' http://localhost:3025/director
+#+END_SRC
+
+Let's verify the removal was properly executed.
+#+BEGIN_SRC sh :results output replace :exports both
+curl http://localhost:3025/directors
+#+END_SRC
+
+#+RESULTS:
+: ("Michelangelo Antonioni" "Jean-Luc Godard")
+
