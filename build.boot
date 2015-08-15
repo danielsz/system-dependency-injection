@@ -12,7 +12,6 @@
                  [ring-middleware-format "0.5.0"]
                  [http-kit "2.1.19"]
                  [compojure "1.4.0"]
-                 [org.danielsz/system "0.1.8"]
                  [hiccup "1.0.5"]
                  [clj-http "2.0.0"]
                  [yesql "0.4.2"]
