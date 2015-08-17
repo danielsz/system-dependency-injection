@@ -7,7 +7,7 @@
                  [environ"1.0.0"]
                  [boot-environ "1.0.0-RC1"]
                  [org.clojure/clojure "1.7.0"]
-                 [org.danielsz/system "0.1.9-SNAPSHOT"]
+                 [org.danielsz/system "0.1.9"]
                  [ring/ring-defaults "0.1.5"]
                  [ring-middleware-format "0.5.0"]
                  [http-kit "2.1.19"]
