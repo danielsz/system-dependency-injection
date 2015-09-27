@@ -25,7 +25,7 @@
   (component/system-map
    :db (new-h2-database DEFAULT-DB-SPEC)
    :app (component/using
-         (new-app (routes #'app (fn [db] (create-table! (:db-spec db)))))
+         (new-app routes #'app (fn [db] (create-table! (:db-spec db))))
          [:db])
    :web (component/using
          (new-web-server (Integer. (env :http-port)))
