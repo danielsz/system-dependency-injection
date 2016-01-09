@@ -12,9 +12,9 @@
 
 (defn dev-system []
   (component/system-map
-   :db (new-h2-database DEFAULT-MEM-SPEC)
+   :db (new-h2-database DEFAULT-MEM-SPEC create-table!)
    :app (component/using
-         (new-app #'app (fn [db] (create-table! (:db-spec db))))
+         (new-app #'app)
          [:db])
    :web (component/using
          (new-web-server (Integer. (env :http-port)))
