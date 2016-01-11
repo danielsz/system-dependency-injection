@@ -8,7 +8,7 @@
    [example.db :refer [save-director<! delete-director! directors]]
    [example.api :refer [get-director-of-movie]]))
 
-(defn app [{{db :db-spec} :db}]
+(defn app-routes [{{db :db-spec} :db}]
   (-> (routes
        (GET "/" [] "Welcome. Feed a movie title, and get the director back. Info https://github.com/danielsz/system-advanced-example")
        (POST "/movie" req (fn [{params :params :as req}]

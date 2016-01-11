@@ -5,28 +5,34 @@
    (system.components 
     [h2 :refer [new-h2-database DEFAULT-MEM-SPEC DEFAULT-DB-SPEC]]
     [http-kit :refer [new-web-server]]
-    [app :refer [new-app]])
-   [example.handler :refer [app]]
+    [endpoint :refer [new-endpoint]]
+    [handler :refer [new-handler]])
+   [example.handler :refer [app-routes]]
    [example.db :refer [create-table!]]
    [environ.core :refer [env]]))
 
 (defn dev-system []
   (component/system-map
    :db (new-h2-database DEFAULT-MEM-SPEC create-table!)
-   :app (component/using
-         (new-app #'app)
-         [:db])
-   :web (component/using
-         (new-web-server (Integer. (env :http-port)))
-         {:handler :app})))
+   :routes (component/using
+              (new-endpoint app-routes)
+              [:db])
+   :handler (component/using
+             (new-handler)
+             [:routes])
+   :http (component/using
+          (new-web-server (Integer. (env :http-port)))
+          [:handler])))
 
 (defn prod-system []
   (component/system-map
-   :db (new-h2-database DEFAULT-DB-SPEC)
-   :app (component/using
-         (new-app #'app (fn [db] (create-table! (:db-spec db))))
-         [:db])
-   :web (component/using
+   :db (new-h2-database DEFAULT-DB-SPEC create-table!)
+   :routes (component/using
+              (new-endpoint app-routes)
+              [:db])
+   :handler (component/using
+             (new-handler)
+             [:routes])
+   :http (component/using
          (new-web-server (Integer. (env :http-port)))
-         {:handler :app})))
-
+         [:handler])))
