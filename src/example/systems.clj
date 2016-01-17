@@ -6,8 +6,11 @@
     [h2 :refer [new-h2-database DEFAULT-MEM-SPEC DEFAULT-DB-SPEC]]
     [http-kit :refer [new-web-server]]
     [endpoint :refer [new-endpoint]]
+    [middleware :refer [new-middleware]]
     [handler :refer [new-handler]])
    [example.handler :refer [app-routes]]
+   [ring.middleware.format :refer [wrap-restful-format]]
+   [ring.middleware.defaults :refer [wrap-defaults api-defaults]]
    [example.db :refer [create-table!]]
    [environ.core :refer [env]]))
 
@@ -17,9 +20,12 @@
    :routes (component/using
               (new-endpoint app-routes)
               [:db])
+   :middleware (new-middleware {:middleware [[wrap-restful-format]
+                                             [wrap-defaults :defaults]]
+                                :defaults api-defaults})
    :handler (component/using
              (new-handler)
-             [:routes])
+             [:routes :middleware])
    :http (component/using
           (new-web-server (Integer. (env :http-port)))
           [:handler])))
@@ -30,9 +36,12 @@
    :routes (component/using
               (new-endpoint app-routes)
               [:db])
+   :middleware (new-middleware {:middleware [[wrap-restful-format]
+                                             [wrap-defaults :defaults]]
+                                :defaults api-defaults})
    :handler (component/using
              (new-handler)
-             [:routes])
+             [:routes :middleware])
    :http (component/using
-         (new-web-server (Integer. (env :http-port)))
-         [:handler])))
+          (new-web-server (Integer. (env :http-port)))
+          [:handler])))
