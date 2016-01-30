@@ -2,10 +2,12 @@
  :source-paths   #{"src"}
  :resource-paths #{"resources"}
  :dependencies '[[adzerk/boot-reload    "0.3.1"      :scope "test"]
+                 [org.clojure/java.jdbc "0.4.2"]
+                 [com.h2database/h2 "1.4.191"]
                  [org.clojure/java.jdbc "0.4.1"]
                  [com.h2database/h2 "1.4.187"]
-                 [environ"1.0.1"]
-                 [boot-environ "1.0.1"]
+                 [environ"1.0.2"]
+                 [boot-environ "1.0.2"]
                  [org.clojure/clojure "1.7.0"]
                  [org.danielsz/system "0.3.0-SNAPSHOT"]
                  [ring/ring-defaults "0.1.5"]
@@ -14,7 +16,7 @@
                  [compojure "1.4.0"]
                  [hiccup "1.0.5"]
                  [clj-http "2.0.0"]
-                 [yesql "0.4.2"]
+                 [yesql "0.5.2"]
                  [org.clojure/data.json "0.2.6"]])
 
 (require
