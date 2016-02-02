@@ -5,13 +5,12 @@
                  [org.clojure/java.jdbc "0.4.2"]
                  [com.h2database/h2 "1.4.191"]
                  [org.clojure/java.jdbc "0.4.1"]
-                 [com.h2database/h2 "1.4.187"]
                  [environ"1.0.2"]
                  [boot-environ "1.0.2"]
-                 [org.clojure/clojure "1.7.0"]
+                 [org.clojure/clojure "1.8.0"]
                  [org.danielsz/system "0.3.0-SNAPSHOT"]
                  [ring/ring-defaults "0.1.5"]
-                 [ring-middleware-format "0.5.0"]
+                 [ring-middleware-format "0.7.0"]
                  [http-kit "2.1.19"]
                  [compojure "1.4.0"]
                  [hiccup "1.0.5"]
@@ -33,7 +32,7 @@
    (environ :env {:http-port "3025"
                   :imdb-key "348b843dca6130f34597bea34cb95701"})
    (watch :verbose true)
-   (system :sys #'dev-system :auto-start true :hot-reload true :files ["handler.clj"])
+   (system :sys #'dev-system :auto true :files ["handler.clj"])
    (repl :server true)))
 
 
