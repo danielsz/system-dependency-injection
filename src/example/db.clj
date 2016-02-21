@@ -7,9 +7,9 @@
 (defqueries "sql/queries.sql")
 
 (defprotocol DemoPersistence
-  (list [this] "list all users")
-  (save [this name] "save a user")
-  (delete [this name] "get a video by id"))
+  (list [this] "list all directors")
+  (save [this name] "save a director")
+  (delete [this name] "delete a director"))
 
 (extend-type JDBCDatabase
   DemoPersistence
