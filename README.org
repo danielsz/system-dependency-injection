@@ -6,6 +6,7 @@ It demonstrates the following:
 
 - How [[https://github.com/danielsz/system-dependency-injection/blob/edbdcc2642e3d86eb3363c3c282892e2c246a9c1/src/example/systems.clj#L20][dependency injection]] works with the [[https://github.com/stuartsierra/component][componen]]t library. 
 - How Ring handlers are being [[https://github.com/danielsz/system-dependency-injection/blob/edbdcc2642e3d86eb3363c3c282892e2c246a9c1/src/example/handler.clj#L10][closed over]] to expose the database handle.
+- How the [[https://github.com/weavejester/duct][Duct]]-style abstractions clearly and cleanly delineate [[https://github.com/danielsz/system-dependency-injection/blob/2682f9e998b87fdedef5b6f243bf11abbc3c7fd4/src/example/systems.clj#L9][endpoints]], [[https://github.com/danielsz/system-dependency-injection/blob/2682f9e998b87fdedef5b6f243bf11abbc3c7fd4/src/example/systems.clj#L10][middleware]] and [[https://github.com/danielsz/system-dependency-injection/blob/2682f9e998b87fdedef5b6f243bf11abbc3c7fd4/src/example/systems.clj#L11][handler]].
 - How components are [[https://github.com/danielsz/system-dependency-injection/blob/edbdcc2642e3d86eb3363c3c282892e2c246a9c1/src/example/db.clj#L14][extended]] to provide application-level functionality.
 
 ** Mission statement
