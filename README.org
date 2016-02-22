@@ -1,6 +1,13 @@
 * Dependency injection example with system
 ** Definition
-This is an example for the [[https://github.com/danielsz/system][system]] library. It shows how to leverage the dependency injection features of [[https://github.com/stuartsierra/component][componen]]t, the libary on top of which system itself is built. 
+This is a case study project for the [[https://github.com/danielsz/system][system]] library, summing up practices that have emerged in the Clojure ecosystem. 
+
+It demonstrates the following:
+
+- How [[https://github.com/danielsz/system-dependency-injection/blob/edbdcc2642e3d86eb3363c3c282892e2c246a9c1/src/example/systems.clj#L20][dependency injection]] works with the [[https://github.com/stuartsierra/component][componen]]t library. 
+- How Ring handlers are being [[https://github.com/danielsz/system-dependency-injection/blob/edbdcc2642e3d86eb3363c3c282892e2c246a9c1/src/example/handler.clj#L10][closed over]] to expose the database handle.
+- How components are [[https://github.com/danielsz/system-dependency-injection/blob/edbdcc2642e3d86eb3363c3c282892e2c246a9c1/src/example/db.clj#L14][extended]] to provide application-level functionality.
+
 ** Mission statement
 Names are important. Which names? Those behind our favorite movies, that's who! So let’s save them via a web service.
 ** Installation
