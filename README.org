@@ -1,6 +1,6 @@
 * Dependency injection example with system
 ** Definition
-This is a case study project for the [[https://github.com/danielsz/system][system]] library, summing up practices that have emerged in the Clojure ecosystem. 
+This is a case study project for the [[https://github.com/danielsz/system][system]] library, summing up practices that have emerged in the Clojure landscape. 
 
 It demonstrates the following:
 
