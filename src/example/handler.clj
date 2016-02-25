@@ -10,19 +10,17 @@
 (defn app-routes [{db :db}]
   (routes
    (GET "/" [] "Welcome. Feed a movie title, and get the director back. Info https://github.com/danielsz/system-advanced-example")
-   (POST "/movie" req (fn [{params :params :as req}]
-                        (-> (pr-str {:director (find-director (:movie params))})
-                            response
-                            (content-type "application/edn")
-                            (charset "UTF-8"))))
+   (POST "/movie" [movie] (-> (pr-str {:director (find-director movie)})
+                              response
+                              (content-type "application/edn")
+                              (charset "UTF-8")))
     (GET "/directors" req (-> (pr-str (map :name (list db)))
-                             response
-                             (content-type "application/edn")
-                             (charset "UTF-8")))
-   (ANY "/director" req (fn [{params :params :as req}]
-                          (->
-                           (case (:request-method req)
-                             :put (save db (:director params))
-                             :delete (delete db (:director params)))
-                           response)))
+                              response
+                              (content-type "application/edn")
+                              (charset "UTF-8")))
+   (ANY "/director" [director :as req] (->
+                                (case (:request-method req)
+                                  :put (save db director)
+                                  :delete (delete db director))
+                                response))
    (route/not-found "404")))
