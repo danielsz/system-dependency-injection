@@ -24,7 +24,7 @@
       (filter #(= (:job %) "Director"))
       (map :name)))
 
-(defn get-director-of-movie [title]
+(defn find-director [title]
   (if-let [movie-id (get-movie-id title)]
     (get-movie-director movie-id)
     "Please try again."))
