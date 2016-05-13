@@ -1,5 +1,5 @@
 (ns example.core
-  (:require [reloaded.repl :refer [set-init! go]]
+  (:require [system.repl :refer [set-init! go]]
             [example.systems :refer [prod-system]]))
 
 (defn -main
