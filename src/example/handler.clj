@@ -19,8 +19,8 @@
                               (content-type "application/edn")
                               (charset "UTF-8")))
    (ANY "/director" [director :as req] (->
-                                (case (:request-method req)
-                                  :put (save db director)
-                                  :delete (delete db director))
-                                response))
+                                        (case (:request-method req)
+                                          :put (save db director)
+                                          :delete (delete db director))
+                                        response))
    (route/not-found "404")))
