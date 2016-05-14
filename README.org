@@ -109,3 +109,7 @@ curl http://localhost:3025/directors
 #+RESULTS:
 : ("Michelangelo Antonioni" "Jean-Luc Godard")
 
+
+** License
+Distributed under the [[http://opensource.org/licenses/eclipse-1.0.php][Eclipse Public License]], the same as Clojure.
+
