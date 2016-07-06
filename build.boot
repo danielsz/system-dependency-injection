@@ -1,14 +1,14 @@
 (set-env!
  :source-paths   #{"src"}
  :resource-paths #{"resources"}
- :dependencies '[[adzerk/boot-reload    "0.3.1"      :scope "test"]
+ :dependencies '[[adzerk/boot-reload    "0.4.11"      :scope "test"]
                  [org.clojure/java.jdbc "0.4.2"]
                  [com.h2database/h2 "1.4.191"]
                  [org.clojure/java.jdbc "0.4.1"]
                  [environ"1.0.3"]
                  [boot-environ "1.0.3"]
                  [org.clojure/clojure "1.8.0"]
-                 [org.danielsz/system "0.3.0-SNAPSHOT"]
+                 [org.danielsz/system "0.3.1-SNAPSHOT"]
                  [ring/ring-defaults "0.1.5"]
                  [ring-middleware-format "0.7.0"]
                  [http-kit "2.1.19"]
