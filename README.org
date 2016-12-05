@@ -10,10 +10,16 @@ It demonstrates the following:
 - How components are [[https://github.com/danielsz/system-dependency-injection/blob/edbdcc2642e3d86eb3363c3c282892e2c246a9c1/src/example/db.clj#L14][extended]] to provide application-level functionality.
 
 ** Mission statement
-Names are important. Which names? Those behind our favorite movies, that's who! So let’s save them via a web service.
+Names are important. What names? Those behind our favorite movies, that's who! So let’s save them via a web service.
 ** Installation
 
 In our development environment, we use a in-memory database and a web server listening on port 3025. 
+
+#+BEGIN_SRC sh
+$ boot dev
+#+END_SRC
+
+Or, if you don't intend to connect with a REPL to the running system, type simply:
 
 #+BEGIN_SRC sh
 $ boot dev-run
@@ -23,12 +29,6 @@ In our production environment, we use a persistent database and a web server lis
 
 #+BEGIN_SRC sh
 $ boot prod-run
-#+END_SRC
-
-To connect with a REPL to the running system.
-
-#+BEGIN_SRC sh
-$ boot dev
 #+END_SRC
 
 ** Usage
