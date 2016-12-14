@@ -20,9 +20,8 @@
    :routes (component/using
               (new-endpoint app-routes)
               [:db])
-   :middleware (new-middleware {:middleware [[wrap-restful-format]
-                                             [wrap-defaults :defaults]]
-                                :defaults api-defaults})
+   :middleware (new-middleware {:middleware [wrap-restful-format
+                                             [wrap-defaults api-defaults]]})
    :handler (component/using
              (new-handler)
              [:routes :middleware])
@@ -36,9 +35,8 @@
    :routes (component/using
               (new-endpoint app-routes)
               [:db])
-   :middleware (new-middleware {:middleware [[wrap-restful-format]
-                                             [wrap-defaults :defaults]]
-                                :defaults api-defaults})
+   :middleware (new-middleware {:middleware [wrap-restful-format
+                                             [wrap-defaults api-defaults]]})
    :handler (component/using
              (new-handler)
              [:routes :middleware])
