@@ -8,7 +8,7 @@
                  [environ"1.0.3"]
                  [boot-environ "1.0.3"]
                  [org.clojure/clojure "1.8.0"]
-                 [org.danielsz/system "0.3.2-SNAPSHOT"]
+                 [org.danielsz/system "0.4.0-SNAPSHOT"]
                  [ring/ring-defaults "0.1.5"]
                  [ring-middleware-format "0.7.0"]
                  [http-kit "2.1.19"]
@@ -20,7 +20,7 @@
 
 (require
  '[adzerk.boot-reload    :refer [reload]]
- '[example.systems :refer [dev-system prod-system]]
+ '[example.systems :refer [base-system]]
  '[environ.boot :refer [environ]] 
  '[system.boot :refer [system run]])
 
@@ -31,7 +31,7 @@
    (environ :env {:http-port "3025"
                   :imdb-key "348b843dca6130f34597bea34cb95701"})
    (watch :verbose true)
-   (system :sys #'dev-system :auto true :files ["handler.clj"])
+   (system :sys #'base-system :auto true :files ["handler.clj"])
    (repl :server true)))
 
 
@@ -41,14 +41,15 @@
   (comp
    (environ :env {:http-port "3025"
                   :imdb-key "348b843dca6130f34597bea34cb95701"})
-   (run :main-namespace "example.core" :arguments [#'dev-system])
+   (run :main-namespace "example.core" :arguments [#'base-system])
    (wait)))
 
 (deftask prod-run
   "Run a restartable system in the Repl"
   []
   (comp
-   (environ :env {:http-port "8008"
+   (environ :env {:db "default-db-spec"
+                  :http-port "8008"
                   :imdb-key "348b843dca6130f34597bea34cb95701"})
-   (run :main-namespace "example.core" :arguments [#'prod-system])
+   (run :main-namespace "example.core" :arguments [#'base-system])
    (wait)))

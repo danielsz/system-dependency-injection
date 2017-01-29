@@ -14,24 +14,14 @@
    [ring.middleware.defaults :refer [wrap-defaults api-defaults]]
    [environ.core :refer [env]]))
 
-(defn dev-system []
-  (component/system-map
-   :db (new-h2-database DEFAULT-MEM-SPEC #(create-table! {} {:connection %}))
-   :routes (component/using
-              (new-endpoint app-routes)
-              [:db])
-   :middleware (new-middleware {:middleware [wrap-restful-format
-                                             [wrap-defaults api-defaults]]})
-   :handler (component/using
-             (new-handler)
-             [:routes :middleware])
-   :http (component/using
-          (new-web-server (Integer. (env :http-port)))
-          [:handler])))
+(defn select-database [env]
+  (let [dbs {"default-mem-spec" DEFAULT-MEM-SPEC
+             "default-db-spec" DEFAULT-DB-SPEC}]
+    (get dbs (env :db) DEFAULT-MEM-SPEC)))
 
-(defn prod-system []
+(defn base-system []
   (component/system-map
-   :db (new-h2-database DEFAULT-DB-SPEC #(create-table! {} {:connection %}))
+   :db (new-h2-database (select-database env) #(create-table! {} {:connection %}))
    :routes (component/using
               (new-endpoint app-routes)
               [:db])
